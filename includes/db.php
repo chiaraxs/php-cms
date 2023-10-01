@@ -13,8 +13,8 @@ foreach($db as $key => $value){
 // DB CONNECTION
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-if($connection) {
-    echo "Database connesso!";
-}
+// if($connection) {
+//     echo "Database connesso!";
+// }
 
 ?> 
