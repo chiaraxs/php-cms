@@ -72,36 +72,46 @@ include "./includes/admin_head.php";
                     </div>
 
                     <div class="col-lg-6">
-
-                        <!-- Categories query -->
-                        <?php
-                        $query = "SELECT * FROM categories";
-                        $select_categories = mysqli_query($connection, $query);
-                        ?>
-                        <!-- /Categories query -->
-
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Title</th>
+                                    <th scope="col">Titolo</th>
+                                    <th scope="col">Azioni</th>
                                 </tr>
                             </thead>
                             <tbody>
-
-                                <!-- Dynamic categories -->
                                 <?php
-                                while ($row = mysqli_fetch_assoc($select_categories)) {
-                                    $cat_id = $row['cat_id'];
-                                    $cat_title = $row['cat_title'];
+                                    //  All categories query
+                                    $query = "SELECT * FROM categories";
+                                    $select_categories = mysqli_query($connection, $query);
+                                    //  /All categories query 
 
-                                    echo '<tr>
-                                            <th scope="row">' . $cat_id . '</th>
-                                            <td>' . $cat_title . '</td>
-                                        </tr>';
-                                }
+                                    //  Show dynamic categories 
+                                    while ($row = mysqli_fetch_assoc($select_categories)) {
+                                        $cat_id = $row['cat_id'];
+                                        $cat_title = $row['cat_title'];
+
+                                        echo '<tr>
+                                                    <th scope="row">' . $cat_id . '</th>
+                                                    <td>' . $cat_title . '</td>
+                                                    <td><a href="categories.php?delete=' . $cat_id . '"><i class="fa fa-times text-danger"></i></a></td>
+                                                </tr>';
+                                    }
                                 ?>
-                                <!-- /Dynamic categories -->
+                                <!-- / Show dynamic categories -->
+
+                                <!-- Delete category -->
+                                <?php 
+                                    if(isset($_GET['delete'])){
+                                        $cat_id = $_GET['delete'];
+                                        $query = "DELETE FROM categories WHERE cat_id = {$cat_id}";
+
+                                        $delete_query = mysqli_query($connection, $query);
+                                        header("Location: categories.php"); // Refresh automatico della pagina
+                                    }
+                                ?>
+                                <!-- /Delete category -->
                             </tbody>
                         </table>
                     </div>
