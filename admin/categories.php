@@ -76,17 +76,25 @@ include "./includes/admin_head.php";
                             }
                         }
                         ?>
-                        <!-- /Add category -->
 
                         <form action="#" method="post">
                             <div class="form-group">
-                                <label for="cat_title">Category Title</label>
+                                <label for="cat_title">Crea categoria</label>
                                 <input type="text" class="form-control" name="cat_title" id="category">
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Add category">
+                                <input class="btn btn-primary" type="submit" name="submit" value="Crea">
                             </div>
                         </form>
+                        <!-- /Add category -->
+
+                        <?php 
+                            if(isset($_GET['edit'])){
+                                $cat_id = $_GET['edit'];
+
+                                include "includes/update_categories.php";
+                            }
+                        ?>
                     </div>
 
                     <div class="col-lg-6">
@@ -113,7 +121,10 @@ include "./includes/admin_head.php";
                                     echo '<tr>
                                                     <th scope="row">' . $cat_id . '</th>
                                                     <td>' . $cat_title . '</td>
-                                                    <td><a href="categories.php?delete=' . $cat_id . '"><i class="fa fa-times text-danger"></i></a></td>
+                                                    <td>
+                                                        <a href="categories.php?delete=' . $cat_id . '"><i class="fa fa-times text-danger"></i></a>
+                                                        <a href="categories.php?edit=' . $cat_id . '"><i class="fa fa-pencil text-success"></i></a>
+                                                    </td>
                                                 </tr>';
                                 }
                                 ?>
