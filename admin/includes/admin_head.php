@@ -1,3 +1,11 @@
+ <?php ob_start(); ?>  
+ <!--consente di memorizzare temporaneamente l'output generato da uno script PHP anziché inviarlo direttamente al browser dell'utente. -->
+<!-- Dopo aver avviato l'output buffering con ob_start(), tutto ciò che viene generato con echo o altre funzioni di output viene memorizzato temporaneamente. -->
+
+<?php include_once "../includes/db.php"; ?>
+
+<?php include_once "../includes/db.php"; ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -6,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>CMS - Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-include "./includes/head.php";
+include "./includes/admin_head.php";
 ?>
 
 <body>
@@ -11,7 +11,7 @@ include "./includes/head.php";
 
         <!-- Navigation -->
         <?php
-        include "./includes/navbar.php";
+        include "./includes/admin_navbar.php";
         ?>
         <!-- /Navigation -->
 
@@ -23,7 +23,8 @@ include "./includes/head.php";
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            ADMIN AREA
+                            Welcome
+                            <small>Nome User</small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -48,7 +49,7 @@ include "./includes/head.php";
 
     <!-- Script -->
     <?php
-    include "./includes/script.php";
+    include "./includes/admin_script.php";
     ?>
     <!-- /Script -->
 </body>
