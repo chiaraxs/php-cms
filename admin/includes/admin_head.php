@@ -3,8 +3,7 @@
 <!-- Dopo aver avviato l'output buffering con ob_start(), tutto ciò che viene generato con echo o altre funzioni di output viene memorizzato temporaneamente. -->
 
 <?php include_once "../includes/db.php"; ?>
-
-<?php include_once "../includes/db.php"; ?>
+<?php include_once "functions.php"; ?>
 
 <head>
 
