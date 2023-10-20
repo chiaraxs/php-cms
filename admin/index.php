@@ -31,7 +31,7 @@ include "./includes/admin_head.php";
                                 <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
+                                <i class="fa fa-file"></i> 
                             </li>
                         </ol>
                     </div>
