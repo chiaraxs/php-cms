@@ -1,5 +1,26 @@
 <?php 
 
+
+// Messages
+
+function showMessages(){
+    global $connection;
+
+    if (isset($_SESSION['success_message'])) {
+        echo '<div class="alert alert-success" role="alert">' . $_SESSION['success_message'] . '</div>';
+        unset($_SESSION['success_message']); // Rimuovi il messaggio dalla sessione
+    }
+
+    if (isset($_SESSION['error_message'])) {
+        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error_message'] . '</div>';
+        unset($_SESSION['error_message']); // Rimuovi il messaggio dalla sessione
+    }
+}
+
+
+
+// Categories
+
 function insert_category(){
 
     global $connection;
@@ -100,16 +121,66 @@ function editCategory(){
 }
 
 
-function showMessages(){
+
+// Posts
+
+function showAllPosts(){
     global $connection;
 
-    if (isset($_SESSION['success_message'])) {
-        echo '<div class="alert alert-success" role="alert">' . $_SESSION['success_message'] . '</div>';
-        unset($_SESSION['success_message']); // Rimuovi il messaggio dalla sessione
-    }
+     //  All posts query
+     $query = "SELECT * FROM posts";
+     $select_posts = mysqli_query($connection, $query);
+     //  /All posts query 
 
-    if (isset($_SESSION['error_message'])) {
-        echo '<div class="alert alert-danger" role="alert">' . $_SESSION['error_message'] . '</div>';
-        unset($_SESSION['error_message']); // Rimuovi il messaggio dalla sessione
+     //  Show dynamic posts 
+     while ($row = mysqli_fetch_assoc($select_posts)) {
+         $post_id = $row['post_id'];
+         $post_category_id = $row['post_category_id'];
+         $post_author = $row['post_author'];
+         $post_title = $row['post_title'];
+         $post_date = $row['post_date'];
+         $post_image = $row['post_image'];
+         $post_content = $row['post_content'];
+         $post_status = $row['post_status'];
+         $post_tags = $row['post_tags'];
+         $post_comment_count = $row['post_comment_count'];
+
+
+
+         echo '<tr>
+                    <th scope="row">' . $post_id . '</th>
+                    <td>' . $post_category_id . '</td>
+                    <td>' . $post_author . '</td>
+                    <td>' . $post_title . '</td>
+                    <td>' . $post_date . '</td>
+                    <td>' . $post_image . '</td>
+                    <td>' . $post_content . '</td>
+                    <td>' . $post_status . '</td>
+                    <td>' . $post_tags . '</td>
+                    <td>' . $post_comment_count . '</td>
+                    <td>
+                        <a href="posts.php?delete=' . $post_id . '"><i class="fa fa-times text-danger"></i></a>
+                    </td>
+                </tr>';
+     }
+}
+
+function deletePost(){
+    global $connection;
+
+    if (isset($_GET['delete'])) {
+        $post_id = $_GET['delete'];
+        $query = "DELETE FROM posts WHERE post_id = {$post_id}";
+
+        $delete_query = mysqli_query($connection, $query);
+
+        if ($delete_query) {
+            $_SESSION['success_message'] = "Post eliminato con successo!";
+        } else {
+            $_SESSION['error_message'] = "Errore durante l'eliminazione del post.";
+        }
+
+        header("Location: posts.php"); // Refresh automatico della pagina
     }
 }
+
